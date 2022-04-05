@@ -1,21 +1,40 @@
+.page {
+  width: 210mm;
+  height: 297mm;
+  page-break-after: always;
+  display: flex;
+}
+
+.page > .stripes-left {
+  border-left: 5px solid #771821;
+  border-right: 5px solid #a05d64;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  margin: 10mm;
+  flex-grow: 1;
+  border: 1px solid black;
+}
+
 @media screen {
-  .result-preview > .page {
+  .page {
     margin: 50px auto;
     box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
     background-color: #ffffff;
   }
 }
 
-.page {
-  width: 210mm;
-  height: 297mm;
-  padding: 20mm;
-  page-break-after: always;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
 @page {
   size: A4 portrait;
   margin: 0;
+}
+
+@media print {
 }
