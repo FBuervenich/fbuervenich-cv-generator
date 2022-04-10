@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './CvTemplate.css';
 import Header from './Header';
 
 function CvTemplate(): JSX.Element {
+  const { t } = useTranslation();
+
   return (
     <div>
       {new Array(5).fill(null).map((v, i) => (
@@ -11,7 +14,16 @@ function CvTemplate(): JSX.Element {
           <div className="page-wrapper">
             <Header />
             <div className="page-content">
-              {new Array(8).fill(null).map((iv, ii) => (
+              <div className="section-heading">{t('headings.experience')}</div>
+              <div className="section-heading">{t('headings.education')}</div>
+              <div className="section-heading">
+                {t('headings.further_education')}
+              </div>
+              <div className="section-heading">{t('headings.knowledge')}</div>
+              <div className="section-heading">
+                {t('headings.hobbies_and_interests')}
+              </div>
+              {new Array(5).fill(null).map((iv, ii) => (
                 <div>
                   {i}-{ii}. Lorem ipsum dolor sit amet, consetetur sadipscing
                   elitr, sed diam nonumy eirmod tempor invidunt ut labore et
