@@ -53,6 +53,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
+    'no-restricted-syntax': 'off',
   },
 
   settings: {
