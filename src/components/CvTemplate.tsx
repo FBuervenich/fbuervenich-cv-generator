@@ -1,18 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { InternationalizedText } from '../types';
-import { translate } from '../utils';
-import { sectionHeadings } from '../utils/constants';
+import { loadData } from '../utils/dataLoader';
 import './CvTemplate.css';
 import Header from './Header';
 
 interface Page {
   totalHeight: number | null;
   remainingHeight: number | null;
-  elements: PageElement[];
+  elements: React.ReactNode[];
 }
 
-type PageElement = SectionTitle | Subsection;
+type PageElement = React.ReactNode;
 
 export interface Section {
   title: SectionTitle;
@@ -26,30 +24,20 @@ interface Subsection {
   contents: InternationalizedText[];
 }
 
-function typeIsSectionTitle(val: PageElement): val is SectionTitle {
-  return typeof val === 'string';
-}
-
 async function asyncRequestAnimationFrame(): Promise<number> {
   return new Promise((resolve) => {
     window.requestAnimationFrame(resolve);
   });
 }
 
-function CvTemplate(props: { sections: Section[] }): JSX.Element {
-  const { t, i18n } = useTranslation();
-  const { sections } = props;
+function CvTemplate(props: { cvElements: PageElement[] }): JSX.Element {
+  const { cvElements } = props;
 
-  const fakePagesRefs = useRef<(HTMLDivElement | null)[]>([]);
   const pagesRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const [pages, setPages] = useState<Page[]>([]);
 
   const realPages: Page[] = [];
-
-  // useEffect(() => {
-  //   return null;
-  // });
 
   function addEmptyPage(height: number | undefined = 0): Page {
     const newPage: Page = {
@@ -87,12 +75,8 @@ function CvTemplate(props: { sections: Section[] }): JSX.Element {
 
     const newSubsectionRequiredHeight = newSubsectionRef.clientHeight;
 
-    console.log('adding element with height', newSubsectionRequiredHeight);
-
     let currentLastRealPage =
       realPages[realPages.length - 1] ?? addEmptyPage(newPageMaxHeight);
-
-    console.log(`remaining height`, currentLastRealPage.remainingHeight);
 
     // add new page if required
     if (
@@ -107,7 +91,7 @@ function CvTemplate(props: { sections: Section[] }): JSX.Element {
       (currentLastRealPage.remainingHeight ?? 0) - newSubsectionRequiredHeight;
   }
 
-  async function test(): Promise<void> {
+  async function render(): Promise<void> {
     // set an empty signle page so it's height can be determined
     setPages([
       {
@@ -126,28 +110,30 @@ function CvTemplate(props: { sections: Section[] }): JSX.Element {
 
     const availablePageHeight = pseudoPageRef.clientHeight;
 
-    console.log('availablePageHeight', availablePageHeight);
-
-    for (const section of sections) {
+    for (const element of cvElements) {
       // eslint-disable-next-line
-      await addElement(section.title, availablePageHeight);
-      for (const subsection of section.subsections) {
-        // eslint-disable-next-line
-        await addElement(subsection, availablePageHeight);
-      }
+      await addElement(element, availablePageHeight);
     }
 
-    console.log(`setting real pages`, realPages);
     setPages(() => realPages);
   }
+
+  let rendered = false;
+  useEffect(() => {
+    // make sure to render the content only once
+    if (!rendered) {
+      render();
+      rendered = true;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cvElements]);
 
   return (
     <div>
       <div className="no-print">
-        <button onClick={test} type="button">
+        <button onClick={render} type="button">
           Gooo
         </button>
-        {JSON.stringify(pages)}
       </div>
       {pages.map((page, pageIndex) => (
         <div className="page">
@@ -160,26 +146,8 @@ function CvTemplate(props: { sections: Section[] }): JSX.Element {
               }}
               className="page-content"
             >
-              {page.elements.map((element) => {
-                if (typeIsSectionTitle(element)) {
-                  return (
-                    <div className="section-heading">
-                      {t(element as string)}
-                    </div>
-                  );
-                }
-                return (
-                  <div className="subsection">
-                    <div className="subsection-heading">
-                      {translate(element.title, i18n.language)}
-                    </div>
-                    <ul>
-                      {element.contents.map((contentElement) => (
-                        <li>{translate(contentElement, i18n.language)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                );
+              {page.elements.map((element, elementIndex) => {
+                return element;
               })}
             </div>
           </div>

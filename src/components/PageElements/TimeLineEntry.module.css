@@ -1,0 +1,7 @@
+.wrapper {
+  display: flex;
+}
+
+.date-range {
+  max-width: 10vw;
+}
