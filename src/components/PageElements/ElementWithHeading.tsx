@@ -1,21 +1,44 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { InternationalizedText } from '../../types';
+import { translate } from '../../utils';
 import ElementWithHeadingStyles from './ElementWithHeading.module.css';
 
-function ElementWithHeading(props: {
-  headingI18nKey: string;
+type Props = {
   children: React.ReactNode;
-}): JSX.Element {
-  const { t } = useTranslation();
+} & DefaultProps;
 
-  const { headingI18nKey, children } = props;
+type DefaultProps = Partial<typeof defaultProps>;
+
+const defaultProps: {
+  headingI18nKey?: string;
+  headingTitle?: InternationalizedText;
+} = {
+  headingI18nKey: undefined,
+  headingTitle: undefined,
+};
+
+function ElementWithHeading(props: Props): JSX.Element {
+  const { t, i18n } = useTranslation();
+
+  const { headingI18nKey, headingTitle, children } = props;
   return (
-    <div>
+    <>
       <div className={ElementWithHeadingStyles['section-heading']}>
-        {t(headingI18nKey)}
+        {headingI18nKey ? (
+          <span>{t(headingI18nKey)}</span>
+        ) : (
+          <span>
+            {headingTitle ? (
+              <span>{translate(headingTitle, i18n.language)}</span>
+            ) : (
+              <span />
+            )}
+          </span>
+        )}
       </div>
-      <div>{children}</div>
-    </div>
+      {children}
+    </>
   );
 }
 

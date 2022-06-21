@@ -18,6 +18,7 @@ export async function loadData(): Promise<
   }
 
   const dataFiles = [
+    { fileName: 'personal.json', dataType: 'personal' },
     { fileName: 'career.json', dataType: 'career' },
     { fileName: 'education.json', dataType: 'education' },
     { fileName: 'knowledge.json', dataType: 'knowledge' },

@@ -1,7 +1,21 @@
 .wrapper {
   display: flex;
+  width: 100%;
+}
+
+.wrapper-spacer {
+  height: 20px;
+}
+
+.content {
+  flex-grow: 1;
 }
 
 .date-range {
-  max-width: 10vw;
+  width: 100px;
+  min-width: 100px;
+}
+
+.title {
+  font-weight: bold;
 }

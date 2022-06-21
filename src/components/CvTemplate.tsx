@@ -130,11 +130,6 @@ function CvTemplate(props: { cvElements: PageElement[] }): JSX.Element {
 
   return (
     <div>
-      <div className="no-print">
-        <button onClick={render} type="button">
-          Gooo
-        </button>
-      </div>
       {pages.map((page, pageIndex) => (
         <div className="page">
           <div className="stripes-left" />
@@ -146,7 +141,7 @@ function CvTemplate(props: { cvElements: PageElement[] }): JSX.Element {
               }}
               className="page-content"
             >
-              {page.elements.map((element, elementIndex) => {
+              {page.elements.map((element) => {
                 return element;
               })}
             </div>

@@ -5,8 +5,8 @@ import { translate } from '../../utils';
 import TimeLineEntryStyles from './TimeLineEntry.module.css';
 
 type TimeLineEntryProps = {
-  fromDate: Date;
-  toDate: Date;
+  fromDate: string;
+  toDate: string;
   title: InternationalizedText;
   content: InternationalizedText[];
 } & DefaultProps;
@@ -17,6 +17,14 @@ const defaultProps: { subtitle?: InternationalizedText } = {
   subtitle: undefined,
 };
 
+function formatDate(date: string): string {
+  const isDateToday = Number.isNaN(new Date(date).getDate());
+  const dateString = isDateToday
+    ? 'Today'
+    : new Date(date).toISOString().substring(0, 7);
+  return dateString;
+}
+
 function TimeLineEntry(props: TimeLineEntryProps): JSX.Element {
   const { fromDate, toDate, title, subtitle, content } = props;
 
@@ -25,12 +33,13 @@ function TimeLineEntry(props: TimeLineEntryProps): JSX.Element {
   return (
     <div className={TimeLineEntryStyles.wrapper}>
       <div className={TimeLineEntryStyles['date-range']}>
-        <span>{fromDate.toDateString()}</span>
-        <span> - </span>
-        <span>{toDate.toDateString()}</span>
+        <span>{formatDate(fromDate)} -</span>
+        <span>{formatDate(toDate)}</span>
       </div>
-      <div>
-        <span>{translate(title, i18n.language)}</span>
+      <div className={TimeLineEntryStyles.content}>
+        <span className={TimeLineEntryStyles.title}>
+          {translate(title, i18n.language)}
+        </span>
         {subtitle ? (
           <span>, {translate(subtitle, i18n.language)}</span>
         ) : (
@@ -41,6 +50,7 @@ function TimeLineEntry(props: TimeLineEntryProps): JSX.Element {
             <li>{translate(contentElement, i18n.language)}</li>
           ))}
         </ul>
+        <div className={TimeLineEntryStyles['wrapper-spacer']} />
       </div>
     </div>
   );

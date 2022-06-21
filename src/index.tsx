@@ -18,6 +18,9 @@ i18n.use(initReactI18next).init({
           hobbies_and_interests: 'Hobbies an interests',
           knowledge: 'Special knowledge',
         },
+        misc: {
+          today: 'Today',
+        },
       },
     },
   },

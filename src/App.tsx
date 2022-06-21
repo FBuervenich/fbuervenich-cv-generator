@@ -4,605 +4,9 @@ import './App.css';
 
 import CvTemplate, { Section } from './components/CvTemplate';
 import ElementWithHeading from './components/PageElements/ElementWithHeading';
+import PersonalInformation from './components/PageElements/PersonalInformation';
 import TimeLineEntry from './components/PageElements/TimeLineEntry';
 import { loadData } from './utils/dataLoader';
-
-const sections: Section[] = [
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'headings.experience',
-    subsections: [
-      {
-        title: { en: 'hallo' },
-        contents: [
-          {
-            en: 'Hallo 123',
-          },
-          {
-            en: 'Hallo 123',
-          },
-        ],
-      },
-      {
-        title: { en: '2hallo' },
-        contents: [
-          {
-            en: '2Hallo 123',
-          },
-          {
-            en: '2Hallo 123',
-          },
-        ],
-      },
-    ],
-  },
-];
 
 function enricheWithHeadingIfRequired(
   element: React.ReactNode,
@@ -628,11 +32,18 @@ async function generateCvElements(): Promise<Array<React.ReactNode>> {
 
   const elements: React.ReactNode[] = [];
 
+  elements.push(
+    <PersonalInformation
+      name={`${data.personal.firstName} ${data.personal.lastName}`}
+      address={data.personal.address}
+    />
+  );
+
   data.career.forEach((v: any, index: number) => {
     const element = (
       <TimeLineEntry
-        fromDate={new Date(v.startDate)}
-        toDate={new Date(v.endDate)}
+        fromDate={v.startDate}
+        toDate={v.endDate}
         title={v.position}
         subtitle={v.company}
         content={v.content}
@@ -646,8 +57,8 @@ async function generateCvElements(): Promise<Array<React.ReactNode>> {
   data.education.forEach((v: any, index: number) => {
     const element = (
       <TimeLineEntry
-        fromDate={new Date(v.startDate)}
-        toDate={new Date(v.endDate)}
+        fromDate={v.startDate}
+        toDate={v.endDate}
         title={v.degree}
         subtitle={v.institution}
         content={v.content}
@@ -655,6 +66,21 @@ async function generateCvElements(): Promise<Array<React.ReactNode>> {
     );
     elements.push(
       enricheWithHeadingIfRequired(element, index, 'headings.education')
+    );
+  });
+
+  data.qualification.forEach((v: any, index: number) => {
+    const element = (
+      <TimeLineEntry
+        fromDate={v.startDate}
+        toDate={v.endDate}
+        title={v.type}
+        subtitle={v.title}
+        content={v.content}
+      />
+    );
+    elements.push(
+      enricheWithHeadingIfRequired(element, index, 'headings.further_education')
     );
   });
 
@@ -683,15 +109,12 @@ function App(): JSX.Element {
         <div>Loading...</div>
       ) : (
         <div>
-          {dataLoaded ? (
-            <CvTemplate cvElements={cvElements} />
-          ) : (
-            <div>
-              <button onClick={initLoading} type="button">
-                Load
-              </button>
-            </div>
-          )}
+          <div className="no-print">
+            <button onClick={initLoading} type="button">
+              Reload
+            </button>
+          </div>
+          {dataLoaded ? <CvTemplate cvElements={cvElements} /> : <div />}
         </div>
       )}
     </div>
