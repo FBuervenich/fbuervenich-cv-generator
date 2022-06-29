@@ -1,0 +1,8 @@
+.category {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.category-name {
+  min-width: 15vw;
+}

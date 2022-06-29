@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row {
+  display: flex;
+  padding-bottom: 5px;
+}
+.row > div:nth-child(1) {
+  width: 15vw;
+}
+
+.picture {
+  border: 1px solid black;
+  height: 200px;
+}

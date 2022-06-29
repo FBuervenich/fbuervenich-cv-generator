@@ -12,16 +12,20 @@ type TimeLineEntryProps = {
 } & DefaultProps;
 
 type DefaultProps = Partial<typeof defaultProps>;
-
 const defaultProps: { subtitle?: InternationalizedText } = {
   subtitle: undefined,
 };
 
+function toYearAndMonths(date: Date): string {
+  const months = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${months}/${year}`;
+}
+
 function formatDate(date: string): string {
   const isDateToday = Number.isNaN(new Date(date).getDate());
-  const dateString = isDateToday
-    ? 'Today'
-    : new Date(date).toISOString().substring(0, 7);
+  const dateString = isDateToday ? 'Today' : toYearAndMonths(new Date(date));
   return dateString;
 }
 
@@ -56,6 +60,41 @@ function TimeLineEntry(props: TimeLineEntryProps): JSX.Element {
   );
 }
 
-TimeLineEntry.defaultProps = {};
+type CareerTimeLineEntryProps = TimeLineEntryProps &
+  CareerTimeLineEntryDefaultProps;
+
+type CareerTimeLineEntryDefaultProps = Partial<
+  typeof careerTimeLineEntryDefaultProps
+>;
+const careerTimeLineEntryDefaultProps: {
+  technologies?: InternationalizedText[];
+} = {
+  technologies: undefined,
+};
+
+export function CareerTimelineEntry(
+  props: CareerTimeLineEntryProps
+): JSX.Element {
+  const { i18n } = useTranslation();
+
+  return TimeLineEntry({
+    ...props,
+    content: [
+      ...props.content,
+      ...(props.technologies
+        ? [
+            {
+              en: `Technologies: ${props.technologies
+                .map((v) => translate(v, i18n.language))
+                .join(', ')}`,
+              de: `Technologien: ${props.technologies
+                .map((v) => translate(v, i18n.language))
+                .join(', ')}`,
+            },
+          ]
+        : []),
+    ],
+  });
+}
 
 export default TimeLineEntry;

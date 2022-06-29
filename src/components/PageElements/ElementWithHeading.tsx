@@ -13,18 +13,24 @@ type DefaultProps = Partial<typeof defaultProps>;
 const defaultProps: {
   headingI18nKey?: string;
   headingTitle?: InternationalizedText;
+  preventTopPadding?: boolean;
 } = {
   headingI18nKey: undefined,
   headingTitle: undefined,
+  preventTopPadding: false,
 };
 
 function ElementWithHeading(props: Props): JSX.Element {
   const { t, i18n } = useTranslation();
 
-  const { headingI18nKey, headingTitle, children } = props;
+  const { headingI18nKey, headingTitle, preventTopPadding, children } = props;
   return (
     <>
-      <div className={ElementWithHeadingStyles['section-heading']}>
+      <div
+        className={`${ElementWithHeadingStyles['section-heading']} ${
+          !preventTopPadding ? ElementWithHeadingStyles['space-above'] : ''
+        }`}
+      >
         {headingI18nKey ? (
           <span>{t(headingI18nKey)}</span>
         ) : (

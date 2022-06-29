@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { InternationalizedText } from '../types';
-import { loadData } from '../utils/dataLoader';
 import './CvTemplate.css';
 import Header from './Header';
 
@@ -30,8 +29,11 @@ async function asyncRequestAnimationFrame(): Promise<number> {
   });
 }
 
-function CvTemplate(props: { cvElements: PageElement[] }): JSX.Element {
-  const { cvElements } = props;
+function CvTemplate(props: {
+  cvElements: PageElement[];
+  data: any;
+}): JSX.Element {
+  const { cvElements, data } = props;
 
   const pagesRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -70,10 +72,12 @@ function CvTemplate(props: { cvElements: PageElement[] }): JSX.Element {
 
     // wait for the dom to be drawn completely
     await asyncRequestAnimationFrame();
-    const newSubsectionRef =
-      pseudoPageRef.children[pseudoPageRef.children.length - 1];
+    const newSubsectionRefs = pseudoPageRef.children;
 
-    const newSubsectionRequiredHeight = newSubsectionRef.clientHeight;
+    const newSubsectionRequiredHeight = Array.from(newSubsectionRefs).reduce(
+      (acc, curr) => acc + curr.clientHeight,
+      0
+    );
 
     let currentLastRealPage =
       realPages[realPages.length - 1] ?? addEmptyPage(newPageMaxHeight);
@@ -134,7 +138,11 @@ function CvTemplate(props: { cvElements: PageElement[] }): JSX.Element {
         <div className="page">
           <div className="stripes-left" />
           <div className="page-wrapper">
-            <Header />
+            <Header
+              name={`${data.personal.firstName} ${data.personal.lastName}`}
+              email={data.personal.privateEmail}
+              phone={data.personal.phoneNumber}
+            />
             <div
               ref={(el) => {
                 pagesRefs.current[pageIndex] = el;

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { InternationalizedText } from '../../types';
 import { translate } from '../../utils';
 import ElementWithHeading from './ElementWithHeading';
+import PersonalInformationStyles from './PersonalInformation.module.css';
 
 type PersonalInfoProps = {
   name: string;
@@ -12,32 +13,65 @@ type DefaultProps = Partial<typeof defaultProps>;
 
 const defaultProps: {
   address?: InternationalizedText;
-  birthInformation?: string;
+  birthDate?: InternationalizedText;
+  birthPlace?: InternationalizedText;
   nationality?: InternationalizedText;
+  pictureUrl?: string;
 } = {
   address: undefined,
-  birthInformation: undefined,
+  birthDate: undefined,
+  birthPlace: undefined,
   nationality: undefined,
+  pictureUrl: undefined,
 };
 
 function PersonalInformation(props: PersonalInfoProps): JSX.Element {
-  const { name, address } = props;
+  const { name, address, birthDate, birthPlace, nationality, pictureUrl } =
+    props;
 
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <ElementWithHeading headingTitle={{ en: name }}>
+    <div className={PersonalInformationStyles.wrapper}>
       <div>
-        {address ? (
+        <ElementWithHeading headingTitle={{ en: name }} preventTopPadding>
           <div>
-            <div>Address</div>
-            <div>{translate(address, i18n.language)}</div>
+            <div>
+              {address && (
+                <div className={PersonalInformationStyles.row}>
+                  <div>{t('misc.address')}</div>
+                  <div>{translate(address, i18n.language)}</div>
+                </div>
+              )}
+              {birthDate && birthPlace && (
+                <div className={PersonalInformationStyles.row}>
+                  <div>{t('misc.date_birth_place')}</div>
+                  <div>
+                    {translate(birthDate, i18n.language)} /{' '}
+                    {translate(birthPlace, i18n.language)}
+                  </div>
+                </div>
+              )}
+              {nationality && (
+                <div className={PersonalInformationStyles.row}>
+                  <div>{t('misc.nationality')}</div>
+                  <div>{translate(nationality, i18n.language)}</div>
+                </div>
+              )}
+            </div>
           </div>
-        ) : (
-          <span />
+        </ElementWithHeading>
+      </div>
+      <div>
+        {pictureUrl && (
+          <img
+            className={PersonalInformationStyles.picture}
+            src={pictureUrl}
+            alt="Flo"
+          />
         )}
       </div>
-    </ElementWithHeading>
+    </div>
   );
 }
 

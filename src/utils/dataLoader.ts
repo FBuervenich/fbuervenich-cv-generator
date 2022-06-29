@@ -6,6 +6,7 @@ export async function loadData(): Promise<
       projects: [];
       qualification: [];
       personal: [];
+      picture: string;
     }
   | undefined
   | unknown
@@ -28,10 +29,10 @@ export async function loadData(): Promise<
 
   const resultData: Record<string, unknown> = {};
 
-  for (const dataFile of dataFiles) {
-    const requestHeaders: HeadersInit = new Headers();
-    requestHeaders.set('x-auth-token', authToken);
+  const requestHeaders: HeadersInit = new Headers();
+  requestHeaders.set('x-auth-token', authToken);
 
+  for (const dataFile of dataFiles) {
     // eslint-disable-next-line
     const response = await fetch(baseUrl + dataFile.fileName, {
       method: 'GET',
@@ -42,6 +43,16 @@ export async function loadData(): Promise<
 
     resultData[dataFile.dataType] = data;
   }
+
+  const pictureResponse = await fetch(`${baseUrl}picture.png`, {
+    method: 'GET',
+    headers: requestHeaders,
+  });
+
+  const pictureBlob = await pictureResponse.blob();
+  const pictureUrl = URL.createObjectURL(pictureBlob);
+
+  resultData.picture = pictureUrl;
 
   return resultData;
 }

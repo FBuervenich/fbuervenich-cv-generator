@@ -8,9 +8,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fafafa;
-  font: 12pt 'Arial';
+  font: 11pt 'Arial';
 }
 * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+.settings div {
+  margin-bottom: 10px;
 }

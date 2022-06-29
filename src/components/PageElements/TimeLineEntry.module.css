@@ -4,7 +4,7 @@
 }
 
 .wrapper-spacer {
-  height: 20px;
+  height: 5px;
 }
 
 .content {
@@ -12,8 +12,10 @@
 }
 
 .date-range {
-  width: 100px;
-  min-width: 100px;
+  width: 80px;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {

@@ -19,6 +19,31 @@ i18n.use(initReactI18next).init({
           knowledge: 'Special knowledge',
         },
         misc: {
+          address: 'Address',
+          date_birth_place: 'Geburtsdatum / -ort',
+          hobbies: 'Hobbies',
+          interests: 'Interests',
+          nationality: 'Nationality',
+          today: 'Today',
+        },
+      },
+    },
+    de: {
+      translation: {
+        header: { mail: 'E-Mail', phone: 'Mobiltelefon' },
+        headings: {
+          education: 'Ausbildung',
+          experience: 'Beruflicher Werdegang',
+          further_education: 'Weiterbildung',
+          hobbies_and_interests: 'Hobbys und Interessen',
+          knowledge: 'Besondere Kenntnisse',
+        },
+        misc: {
+          address: 'Adresse',
+          date_birth_place: 'Date / place of birth',
+          hobbies: 'Hobbies',
+          interests: 'Interests',
+          nationality: 'Nationalität',
           today: 'Today',
         },
       },

@@ -2,11 +2,30 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './Header.css';
 
-function Header(): JSX.Element {
+function Header(props: {
+  name: string;
+  email: string;
+  phone: string;
+}): JSX.Element {
   const { t } = useTranslation();
+
+  const { name, email, phone } = props;
+
   return (
     <div className="header">
-      <div className="header-component">Florentin Bürvenich</div>
+      <div className="header-component">
+        <svg className="header-icon" viewBox="0 0 48 48">
+          <path
+            fill="currentColor"
+            d="M24 24c4.42 0 8-3.59 8-8 0-4.42-3.58-8-8-8s-8 3.58-8 8c0
+          4.41 3.58 8 8 8zm0 4c-5.33 0-16 2.67-16
+          8v4h32v-4c0-5.33-10.67-8-16-8z"
+          />
+          <path d="M0 0h48v48h-48z" fill="none" />
+        </svg>
+
+        <span>{name}</span>
+      </div>
 
       <div className="header-component">
         <svg className="header-icon" viewBox="0 0 24 24">
@@ -17,7 +36,9 @@ function Header(): JSX.Element {
              8V18Z"
           />
         </svg>
-        <span>{t('header.mail')}: florentin.buervenich@email.com</span>
+        <span>
+          {t('header.mail')}: {email}
+        </span>
       </div>
 
       <div className="header-component">
@@ -38,7 +59,9 @@ function Header(): JSX.Element {
             0 12,13.5Z"
           />
         </svg>
-        <span>{t('header.phone')}: +49 1234 567890</span>
+        <span>
+          {t('header.phone')}: {phone}
+        </span>
       </div>
       <div className="header-component">{t('')}</div>
     </div>
