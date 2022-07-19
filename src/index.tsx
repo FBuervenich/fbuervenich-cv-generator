@@ -20,7 +20,7 @@ i18n.use(initReactI18next).init({
         },
         misc: {
           address: 'Address',
-          date_birth_place: 'Geburtsdatum / -ort',
+          date_birth_place: 'Date / place of birth',
           hobbies: 'Hobbies',
           interests: 'Interests',
           nationality: 'Nationality',
@@ -40,9 +40,9 @@ i18n.use(initReactI18next).init({
         },
         misc: {
           address: 'Adresse',
-          date_birth_place: 'Date / place of birth',
-          hobbies: 'Hobbies',
-          interests: 'Interests',
+          date_birth_place: 'Geburtsdatum / -ort',
+          hobbies: 'Hobbys',
+          interests: 'Interessen',
           nationality: 'Nationalität',
           today: 'Today',
         },

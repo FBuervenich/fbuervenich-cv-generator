@@ -7,8 +7,19 @@
   display: flex;
   padding-bottom: 5px;
 }
-.row > div:nth-child(1) {
+
+.label {
   width: 15vw;
+}
+
+@media print {
+  .label {
+    width: 20vw;
+  }
+}
+
+.value {
+  white-space: break-word;
 }
 
 .picture {

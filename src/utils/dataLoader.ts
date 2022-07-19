@@ -1,3 +1,19 @@
+const baseUrl = process.env.REACT_APP_DATA_BASE_URL;
+const authToken = process.env.REACT_APP_AUTH_TOKEN;
+
+async function getImageBlobUrl(
+  fileName: string,
+  requestHeaders: HeadersInit
+): Promise<string> {
+  const pictureResponse = await fetch(`${baseUrl}${fileName}`, {
+    method: 'GET',
+    headers: requestHeaders,
+  });
+
+  const pictureBlob = await pictureResponse.blob();
+  return URL.createObjectURL(pictureBlob);
+}
+
 export async function loadData(): Promise<
   | {
       career: [];
@@ -11,9 +27,6 @@ export async function loadData(): Promise<
   | undefined
   | unknown
 > {
-  const baseUrl = process.env.REACT_APP_DATA_BASE_URL;
-  const authToken = process.env.REACT_APP_AUTH_TOKEN;
-
   if (!baseUrl || !authToken) {
     return undefined;
   }
@@ -44,15 +57,11 @@ export async function loadData(): Promise<
     resultData[dataFile.dataType] = data;
   }
 
-  const pictureResponse = await fetch(`${baseUrl}picture.png`, {
-    method: 'GET',
-    headers: requestHeaders,
-  });
-
-  const pictureBlob = await pictureResponse.blob();
-  const pictureUrl = URL.createObjectURL(pictureBlob);
+  const pictureUrl = await getImageBlobUrl('picture.png', requestHeaders);
+  const signatureUrl = await getImageBlobUrl('signature.png', requestHeaders);
 
   resultData.picture = pictureUrl;
+  resultData.signature = signatureUrl;
 
   return resultData;
 }

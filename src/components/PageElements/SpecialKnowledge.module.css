@@ -6,3 +6,8 @@
 .category-name {
   min-width: 15vw;
 }
+@media print {
+  .category-name {
+    min-width: 20vw;
+  }
+}

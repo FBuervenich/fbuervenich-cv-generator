@@ -1,5 +1,5 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+import React from 'react';
 import { InternationalizedText } from '../../types';
 import { translate } from '../../utils';
 import ElementWithHeading from './ElementWithHeading';
@@ -39,13 +39,19 @@ function PersonalInformation(props: PersonalInfoProps): JSX.Element {
             <div>
               {address && (
                 <div className={PersonalInformationStyles.row}>
-                  <div>{t('misc.address')}</div>
-                  <div>{translate(address, i18n.language)}</div>
+                  <div className={PersonalInformationStyles.label}>
+                    {t('misc.address')}
+                  </div>
+                  <div className={PersonalInformationStyles.value}>
+                    {translate(address, i18n.language)}
+                  </div>
                 </div>
               )}
               {birthDate && birthPlace && (
                 <div className={PersonalInformationStyles.row}>
-                  <div>{t('misc.date_birth_place')}</div>
+                  <div className={PersonalInformationStyles.label}>
+                    {t('misc.date_birth_place')}
+                  </div>
                   <div>
                     {translate(birthDate, i18n.language)} /{' '}
                     {translate(birthPlace, i18n.language)}
@@ -54,7 +60,9 @@ function PersonalInformation(props: PersonalInfoProps): JSX.Element {
               )}
               {nationality && (
                 <div className={PersonalInformationStyles.row}>
-                  <div>{t('misc.nationality')}</div>
+                  <div className={PersonalInformationStyles.label}>
+                    {t('misc.nationality')}
+                  </div>
                   <div>{translate(nationality, i18n.language)}</div>
                 </div>
               )}
@@ -67,7 +75,7 @@ function PersonalInformation(props: PersonalInfoProps): JSX.Element {
           <img
             className={PersonalInformationStyles.picture}
             src={pictureUrl}
-            alt="Flo"
+            alt="portrait"
           />
         )}
       </div>

@@ -41,6 +41,10 @@
 }
 
 @media print {
+  html,
+  body {
+    zoom: 100%;
+  }
   .no-print {
     display: none !important;
   }

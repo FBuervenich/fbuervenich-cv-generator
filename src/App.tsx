@@ -8,6 +8,7 @@ import ElementWithHeading from './components/PageElements/ElementWithHeading';
 import HobbiesInterests from './components/PageElements/HobbiesInterests';
 import PersonalInformation from './components/PageElements/PersonalInformation';
 import SpecialKnowlege from './components/PageElements/SpecialKnowledge';
+import Appendix from './components/PageElements/Appendix';
 import TimeLineEntry, {
   CareerTimelineEntry,
 } from './components/PageElements/TimeLineEntry';
@@ -105,6 +106,10 @@ async function generateCvElements(
       hobbies={data.personal.hobbies}
       interests={data.personal.interests}
     />
+  );
+
+  elements.push(
+    <Appendix location={data.personal.location} signatureUrl={data.signature} />
   );
 
   return elements;
